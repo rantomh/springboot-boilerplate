@@ -1,0 +1,100 @@
+package com.rantomah.boilerplate.core.helper;
+
+import com.rantomah.boilerplate.application.dto.auth.UserLoginResponseDTO;
+import com.rantomah.boilerplate.core.config.oauth2.RealmScope;
+import com.rantomah.boilerplate.core.config.oauth2.TokenType;
+import com.rantomah.boilerplate.domain.model.RefreshToken;
+import com.rantomah.boilerplate.domain.model.User;
+import java.time.Instant;
+import java.util.List;
+import java.util.UUID;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.oauth2.jwt.JwtClaimsSet;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.rantomah.boilerplate.adapters.out.repository.RefreshTokenRepository;
+
+@Service
+@RequiredArgsConstructor
+public class TokenHelper {
+
+    private static final String PRIVILEGES_CLAIM = "privileges";
+    private static final String SCOPE_CLAIM = "scope";
+    private static final String JTI_CLAIM = "jti";
+
+    private final JwtEncoder jwtEncoder;
+    private final RefreshTokenRepository refreshTokenRepository;
+
+    @Value("${jwt.refresh-token-validity-seconds}")
+    private long refreshValiditySeconds;
+
+    @Value("${jwt.access-token-validity-seconds}")
+    private long accessValiditySeconds;
+
+    @Value("${application.security.oidc.issuer}")
+    private String issuer;
+
+    @Value("${jwt.access-token-validity-seconds}")
+    private Long accessTokenValidity;
+
+    protected String buildAccessTokenFromUser(User user) {
+        Instant now = Instant.now();
+        JwtClaimsSet claims =
+                JwtClaimsSet.builder()
+                        .issuer(issuer)
+                        .issuedAt(now)
+                        .expiresAt(now.plusSeconds(accessValiditySeconds))
+                        .notBefore(now)
+                        .audience(List.of("mobile-app"))
+                        .subject(user.getId().toString())
+                        .claim("username", user.getUsername())
+                        .claim(
+                                PRIVILEGES_CLAIM,
+                                user.getAuthorities().stream().map(a -> a.getAuthority()).toList())
+                        .claim(
+                                SCOPE_CLAIM,
+                                List.of(
+                                        RealmScope.OPENID.value(),
+                                        RealmScope.PROFILE.value(),
+                                        RealmScope.APPLICATION.value()))
+                        .claim(JTI_CLAIM, UUID.randomUUID().toString())
+                        .build();
+        return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+    }
+
+    protected RefreshToken buildAndSaveRefreshTokenFromUser(User user) {
+        RefreshToken refreshToken =
+                RefreshToken.builder()
+                        .token(UUID.randomUUID().toString())
+                        .user(user)
+                        .expiresAt(Instant.now().plusSeconds(refreshValiditySeconds))
+                        .build();
+        return refreshTokenRepository.save(refreshToken);
+    }
+
+    @Transactional
+    public UserLoginResponseDTO tokenWithRefresh(User user) {
+        String accessToken = buildAccessTokenFromUser(user);
+        RefreshToken refreshToken = buildAndSaveRefreshTokenFromUser(user);
+        return UserLoginResponseDTO.builder()
+                .accessToken(accessToken)
+                .tokenType(TokenType.BEARER)
+                .refreshToken(refreshToken.getToken())
+                .expiresIn(accessTokenValidity)
+                .scope(RealmScope.APPLICATION)
+                .build();
+    }
+
+    public UserLoginResponseDTO token(User user) {
+        String accessToken = buildAccessTokenFromUser(user);
+        return UserLoginResponseDTO.builder()
+                .accessToken(accessToken)
+                .tokenType(TokenType.BEARER)
+                .expiresIn(accessTokenValidity)
+                .scope(RealmScope.APPLICATION)
+                .build();
+    }
+}
