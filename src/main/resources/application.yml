@@ -1,0 +1,162 @@
+server:
+  port: ${APP_PORT}
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  error:
+    include-stacktrace: never
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        mail: INFO
+
+spring:
+  data:
+    redis:
+      repositories:
+        enabled: false
+  redis:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+    username: ${REDIS_USERNAME}
+    password: ${REDIS_PASSWORD}
+    time-to-live: ${REDIS_TTL}
+  cache:
+    type: redis
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+    consumer:
+      group-id: notification
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+  
+  devtools.restart:
+    pollInterval: 1s
+    additional-paths: file:src/main/resources/templates/
+    
+  profiles:
+    active: dev
+
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+
+  h2:
+    console:
+      enabled: false
+
+  datasource:
+    url: ${APP_DATABASE_URL}
+    username: ${APP_DATABASE_USER}
+    password: ${APP_DATABASE_PASSWORD}
+    hikari:
+      pool-name: user-cp
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 30000             # 30 secondes
+      connection-timeout: 20000       # 20 secondes
+      max-lifetime: 1800000           # 30 minutes
+      register-mbeans: true
+      auto-commit: true
+      validation-timeout: 5000        # 5 secondes
+      leak-detection-threshold: 0
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: false
+    
+  mail:
+    host: ssl0.ovh.net
+    port: 587
+    username: sender@rantomh.com
+    password: fjioz645fFEZ6FZ
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            trust: ssl0.ovh.net
+          socketFactory:
+            port: 587
+            class: javax.net.ssl.SSLSocketFactory
+
+management:
+  endpoint:
+    shutdown:
+      access: none
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    redis:
+      enabled: true
+
+application:
+  security:
+    jwt:
+      secret: ${APP_JWT_SECRET}
+      duration: 86400
+    facebook:
+      app-id: ${APP_FACEBOOK_APP_ID}
+    google:
+      client-id: ${APP_GOOGLE_CLIENT_ID}
+    otp:
+      # 15 min
+      expiration: 900
+    oidc:
+      issuer: http://localhost:8080
+      redirect-uri: http://localhost:8080/callback
+      default-user: ${APP_DEFAULT_USER}
+      default-password: ${APP_DEFAULT_PASSWORD}
+      clients:
+        mobile: fd69fa1c-bbf1-40da-a295-46a04114d5d6
+  default:
+    initialize: true
+  company:
+    name: Rantomh
+  contact:
+    email: info@rantomh.com
+  subscription:
+    confirmation:
+      expiry-hours: 24
+  user:
+    default-enabled: false
+  services:
+    sage-100-cloud:
+      basePath: http://localhost:3000
+    sales:
+      basePath: http://localhost:8085
+      
+jwt:
+  access-token-validity-seconds: 9000 # 150 min
+  refresh-token-validity-seconds: 1209600 # 14 days

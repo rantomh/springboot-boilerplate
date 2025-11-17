@@ -1,0 +1,20 @@
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        mail: INFO
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    enabled: true
+  mail:
+    properties:
+      mail:
+        debug: true
