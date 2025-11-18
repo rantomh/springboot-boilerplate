@@ -34,5 +34,4 @@ public abstract class BaseController {
     protected <T> ResponseEntity<T> accepted(T body) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(body);
     }
-
 }

@@ -17,8 +17,7 @@ public class ApiErrorDto {
 
     private String code;
 
-    @JsonIgnore 
-    private int httpStatus;
+    @JsonIgnore private int httpStatus;
 
     private int status;
 

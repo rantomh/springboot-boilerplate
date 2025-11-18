@@ -4,9 +4,9 @@ import com.rantomah.boilerplate.application.domain.dto.auth.RefreshTokenRequestD
 import com.rantomah.boilerplate.application.domain.dto.auth.UserLoginRequestDTO;
 import com.rantomah.boilerplate.application.domain.dto.auth.UserLoginResponseDTO;
 import com.rantomah.boilerplate.application.domain.dto.user.UserActivationDTO;
-import com.rantomah.boilerplate.core.BaseController;
-import com.rantomah.boilerplate.application.usecases.AuthService;
 import com.rantomah.boilerplate.application.ports.input.AuthInputPort;
+import com.rantomah.boilerplate.application.usecases.AuthService;
+import com.rantomah.boilerplate.core.BaseController;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

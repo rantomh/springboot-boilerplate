@@ -1,17 +1,14 @@
 package com.rantomah.boilerplate.application.domain.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rantomah.boilerplate.application.domain.constant.UserRole;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -21,7 +18,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
@@ -33,8 +29,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Table(
         name = "app_user",
-        indexes = {
-            @Index(name = "idx_user_username", columnList = "username")})
+        indexes = {@Index(name = "idx_user_username", columnList = "username")})
 @Data
 @Entity
 @Builder
@@ -62,17 +57,13 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @Builder.Default
-    private boolean enabled = false;
+    @Builder.Default private boolean enabled = false;
 
-    @Builder.Default
-    private boolean accountNonLocked = true;
+    @Builder.Default private boolean accountNonLocked = true;
 
-    @Builder.Default
-    private boolean accountNonExpired = true;
+    @Builder.Default private boolean accountNonExpired = true;
 
-    @Builder.Default
-    private boolean credentialsNonExpired = true;
+    @Builder.Default private boolean credentialsNonExpired = true;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)

@@ -5,8 +5,9 @@ import com.rantomah.boilerplate.application.domain.dto.user.CreatePasswordDTO;
 import com.rantomah.boilerplate.application.domain.dto.user.OtpRequestDTO;
 import com.rantomah.boilerplate.application.domain.dto.user.ResetPasswordDTO;
 import com.rantomah.boilerplate.application.domain.dto.user.UserDTO;
-import com.rantomah.boilerplate.core.BaseController;
+import com.rantomah.boilerplate.application.ports.input.UserInputPort;
 import com.rantomah.boilerplate.application.usecases.UserService;
+import com.rantomah.boilerplate.core.BaseController;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.rantomah.boilerplate.application.ports.input.UserInputPort;
 
 @RestController
 @RequestMapping("/api/v1")

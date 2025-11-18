@@ -20,5 +20,4 @@ public class HealthController extends BaseController {
     public ResponseEntity<Map<String, Object>> health() {
         return success(Map.of("status", i18nHelper.get("message.info.health.status")));
     }
-
 }

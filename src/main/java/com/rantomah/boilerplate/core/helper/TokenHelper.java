@@ -1,10 +1,11 @@
 package com.rantomah.boilerplate.core.helper;
 
 import com.rantomah.boilerplate.application.domain.dto.auth.UserLoginResponseDTO;
-import com.rantomah.boilerplate.core.config.oauth2.RealmScope;
-import com.rantomah.boilerplate.core.config.oauth2.TokenType;
 import com.rantomah.boilerplate.application.domain.entities.RefreshToken;
 import com.rantomah.boilerplate.application.domain.entities.User;
+import com.rantomah.boilerplate.core.config.oauth2.RealmScope;
+import com.rantomah.boilerplate.core.config.oauth2.TokenType;
+import com.rantomah.boilerplate.infrastructure.repository.RefreshTokenRepository;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
@@ -15,7 +16,6 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.rantomah.boilerplate.infrastructure.repository.RefreshTokenRepository;
 
 @Service
 @RequiredArgsConstructor

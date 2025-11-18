@@ -1,10 +1,10 @@
 package com.rantomah.boilerplate.infrastructure.service;
 
+import com.rantomah.boilerplate.application.domain.entities.User;
 import com.rantomah.boilerplate.core.exception.AuthenticationException;
 import com.rantomah.boilerplate.core.exception.UserDisabledException;
 import com.rantomah.boilerplate.core.exception.UserLockedException;
 import com.rantomah.boilerplate.core.helper.OtpHelper;
-import com.rantomah.boilerplate.application.domain.entities.User;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -17,14 +17,11 @@ import org.springframework.stereotype.Component;
 @Component
 public abstract class BaseService {
 
-    @Autowired 
-    protected ApplicationEventPublisher publisher;
+    @Autowired protected ApplicationEventPublisher publisher;
 
-    @Autowired 
-    protected PasswordEncoder passwordEncoder;
+    @Autowired protected PasswordEncoder passwordEncoder;
 
-    @Autowired 
-    protected OtpHelper otpHelper;
+    @Autowired protected OtpHelper otpHelper;
 
     protected void validateUser(User user) {
         if (!user.isEnabled()) {
