@@ -1,7 +1,7 @@
 package com.rantomah.boilerplate.infrastructure.repository;
 
-import com.rantomah.boilerplate.core.GenericRepository;
 import com.rantomah.boilerplate.application.domain.entities.User;
+import com.rantomah.boilerplate.core.GenericRepository;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.domain.Page;

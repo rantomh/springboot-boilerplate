@@ -1,15 +1,15 @@
 package com.rantomah.boilerplate.core.helper;
 
-import com.rantomah.boilerplate.core.exception.InvalidOtpException;
-import com.rantomah.boilerplate.core.util.StringUtils;
 import com.rantomah.boilerplate.application.domain.constant.OtpUsage;
 import com.rantomah.boilerplate.application.domain.entities.OTP;
+import com.rantomah.boilerplate.core.exception.InvalidOtpException;
+import com.rantomah.boilerplate.core.util.StringUtils;
+import com.rantomah.boilerplate.infrastructure.repository.OtpRepository;
 import jakarta.transaction.Transactional;
 import java.time.Instant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import com.rantomah.boilerplate.infrastructure.repository.OtpRepository;
 
 @Component
 @RequiredArgsConstructor

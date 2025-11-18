@@ -1,11 +1,11 @@
 package com.rantomah.boilerplate.infrastructure.service;
 
 import com.rantomah.boilerplate.application.domain.entities.User;
+import com.rantomah.boilerplate.infrastructure.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import com.rantomah.boilerplate.infrastructure.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsServiceImpl implements UserDetailsService {

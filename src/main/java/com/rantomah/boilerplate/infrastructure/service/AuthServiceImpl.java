@@ -1,26 +1,26 @@
 package com.rantomah.boilerplate.infrastructure.service;
 
+import com.rantomah.boilerplate.application.domain.constant.OtpUsage;
 import com.rantomah.boilerplate.application.domain.dto.auth.RefreshTokenRequestDTO;
 import com.rantomah.boilerplate.application.domain.dto.auth.UserLoginRequestDTO;
 import com.rantomah.boilerplate.application.domain.dto.auth.UserLoginResponseDTO;
 import com.rantomah.boilerplate.application.domain.dto.user.UserActivationDTO;
+import com.rantomah.boilerplate.application.domain.entities.OTP;
+import com.rantomah.boilerplate.application.domain.entities.RefreshToken;
+import com.rantomah.boilerplate.application.domain.entities.User;
+import com.rantomah.boilerplate.application.usecases.AuthService;
 import com.rantomah.boilerplate.core.exception.AuthenticationException;
 import com.rantomah.boilerplate.core.exception.InvalidCredentialsException;
 import com.rantomah.boilerplate.core.exception.UserDisabledException;
 import com.rantomah.boilerplate.core.exception.UserNotFoundException;
-import com.rantomah.boilerplate.application.domain.constant.OtpUsage;
-import com.rantomah.boilerplate.application.domain.entities.OTP;
-import com.rantomah.boilerplate.application.domain.entities.RefreshToken;
-import com.rantomah.boilerplate.application.domain.entities.User;
 import com.rantomah.boilerplate.core.helper.TokenHelper;
+import com.rantomah.boilerplate.infrastructure.repository.OtpRepository;
+import com.rantomah.boilerplate.infrastructure.repository.RefreshTokenRepository;
+import com.rantomah.boilerplate.infrastructure.repository.UserRepository;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.rantomah.boilerplate.infrastructure.repository.OtpRepository;
-import com.rantomah.boilerplate.infrastructure.repository.RefreshTokenRepository;
-import com.rantomah.boilerplate.infrastructure.repository.UserRepository;
-import com.rantomah.boilerplate.application.usecases.AuthService;
 
 @Service
 @RequiredArgsConstructor

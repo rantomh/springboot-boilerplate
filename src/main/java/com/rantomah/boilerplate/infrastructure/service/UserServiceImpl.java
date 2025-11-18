@@ -1,25 +1,25 @@
 package com.rantomah.boilerplate.infrastructure.service;
 
+import com.rantomah.boilerplate.application.domain.constant.OtpUsage;
 import com.rantomah.boilerplate.application.domain.dto.user.ChangePasswordDTO;
 import com.rantomah.boilerplate.application.domain.dto.user.CreatePasswordDTO;
 import com.rantomah.boilerplate.application.domain.dto.user.OtpRequestDTO;
 import com.rantomah.boilerplate.application.domain.dto.user.ResetPasswordDTO;
 import com.rantomah.boilerplate.application.domain.dto.user.UserDTO;
-import com.rantomah.boilerplate.infrastructure.listener.event.NotificationEvent;
-import com.rantomah.boilerplate.infrastructure.mapper.user.UserMapper;
+import com.rantomah.boilerplate.application.domain.entities.OTP;
+import com.rantomah.boilerplate.application.domain.entities.User;
+import com.rantomah.boilerplate.application.usecases.UserService;
 import com.rantomah.boilerplate.core.exception.GenericException;
 import com.rantomah.boilerplate.core.exception.InvalidCredentialsException;
 import com.rantomah.boilerplate.core.exception.UserNotFoundException;
-import com.rantomah.boilerplate.application.domain.constant.OtpUsage;
-import com.rantomah.boilerplate.application.domain.entities.OTP;
-import com.rantomah.boilerplate.application.domain.entities.User;
+import com.rantomah.boilerplate.infrastructure.listener.event.NotificationEvent;
+import com.rantomah.boilerplate.infrastructure.mapper.user.UserMapper;
+import com.rantomah.boilerplate.infrastructure.repository.UserRepository;
 import java.util.Map;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.rantomah.boilerplate.infrastructure.repository.UserRepository;
-import com.rantomah.boilerplate.application.usecases.UserService;
 
 @Service
 @RequiredArgsConstructor
