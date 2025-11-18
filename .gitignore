@@ -32,4 +32,5 @@ nb-configuration.xml
 .vscode/
 
 # Misc
+.env
 /uploads/

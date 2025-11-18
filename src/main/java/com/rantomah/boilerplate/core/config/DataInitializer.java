@@ -1,8 +1,8 @@
 package com.rantomah.boilerplate.core.config;
 
 import com.rantomah.boilerplate.core.config.oauth2.RealmScope;
-import com.rantomah.boilerplate.domain.constant.UserRole;
-import com.rantomah.boilerplate.domain.model.User;
+import com.rantomah.boilerplate.application.domain.constant.UserRole;
+import com.rantomah.boilerplate.application.domain.entities.User;
 import java.time.Duration;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import org.springframework.security.oauth2.server.authorization.client.Registere
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
-import com.rantomah.boilerplate.adapters.out.repository.UserRepository;
+import com.rantomah.boilerplate.infrastructure.repository.UserRepository;
 
 @Configuration
 @Slf4j
