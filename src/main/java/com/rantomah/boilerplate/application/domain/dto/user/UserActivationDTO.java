@@ -1,0 +1,13 @@
+package com.rantomah.boilerplate.application.domain.dto.user;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
+@Data
+public class UserActivationDTO {
+
+    @Email @NotNull private String email;
+
+    @NotNull private String code;
+}
