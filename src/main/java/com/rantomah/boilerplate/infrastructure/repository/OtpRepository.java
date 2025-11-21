@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface OtpRepository extends GenericRepository<OTP, Long> {
 
-    Optional<OTP> findByCodeAndKeyAndUsage(String code, String key, OtpUsage usage);
+    Optional<OTP> findByCodeAndCleAndUsage(String code, String key, OtpUsage usage);
 
-    Optional<OTP> findByCodeAndKey(String code, String key);
+    Optional<OTP> findByCodeAndCle(String code, String key);
 }

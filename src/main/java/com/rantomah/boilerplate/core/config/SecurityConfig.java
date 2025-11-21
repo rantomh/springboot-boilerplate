@@ -34,7 +34,7 @@ public class SecurityConfig {
         http.formLogin(Customizer.withDefaults())
                 .logout(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**", "/h2-console/**"))
                 .headers(
                         headers ->
                                 headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
