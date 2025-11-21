@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Table(
         name = "one_time_password",
-        indexes = {@Index(name = "idx_otp_keycode", columnList = "key, code", unique = true)})
+        indexes = {@Index(name = "idx_otp_clecode", columnList = "cle, code", unique = true)})
 @NoArgsConstructor
 @AllArgsConstructor
 public class OTP {
@@ -29,7 +29,7 @@ public class OTP {
     private Long id;
 
     @Column(nullable = false)
-    private String key;
+    private String cle;
 
     @Column(nullable = false, length = 6)
     private String code;

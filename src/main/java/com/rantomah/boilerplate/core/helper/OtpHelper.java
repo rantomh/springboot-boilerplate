@@ -21,10 +21,10 @@ public class OtpHelper {
     private Long otpExpiration;
 
     @Transactional
-    public OTP createByKeyAndUsage(String key, OtpUsage usage) {
+    public OTP createByKeyAndUsage(String cle, OtpUsage usage) {
         OTP otp =
                 OTP.builder()
-                        .key(key)
+                        .cle(cle)
                         .code(StringUtils.generateActivationCode(6))
                         .usage(usage)
                         .expiresAt(Instant.now().plusSeconds(otpExpiration))
@@ -38,15 +38,15 @@ public class OtpHelper {
     }
 
     @Transactional
-    public void processByCodeAndKeyAndUsage(String code, String key, OtpUsage usage) {
+    public void processByCodeAndKeyAndUsage(String code, String cle, OtpUsage usage) {
         OTP otp;
         if (usage != null) {
             otp =
                     otpRepository
-                            .findByCodeAndKeyAndUsage(code, key, usage)
+                            .findByCodeAndCleAndUsage(code, cle, usage)
                             .orElseThrow(InvalidOtpException::new);
         } else {
-            otp = otpRepository.findByCodeAndKey(code, key).orElseThrow(InvalidOtpException::new);
+            otp = otpRepository.findByCodeAndCle(code, cle).orElseThrow(InvalidOtpException::new);
         }
         if (otp.isUsed() || otp.isExpired()) {
             throw new InvalidOtpException();

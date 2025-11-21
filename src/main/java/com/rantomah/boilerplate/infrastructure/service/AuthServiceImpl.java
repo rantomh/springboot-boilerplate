@@ -73,14 +73,14 @@ public class AuthServiceImpl extends BaseService implements AuthService {
         String email = request.getEmail().trim().toLowerCase();
         OTP otp =
                 otpRepository
-                        .findByCodeAndKeyAndUsage(
+                        .findByCodeAndCleAndUsage(
                                 request.getCode(), email, OtpUsage.USER_ACTIVATION)
                         .orElseThrow(AuthenticationException::new);
         if (otp.isUsed() || otp.isExpired()) {
             throw new AuthenticationException();
         }
         User user =
-                userRepository.findByUsername(otp.getKey()).orElseThrow(UserNotFoundException::new);
+                userRepository.findByUsername(otp.getCle()).orElseThrow(UserNotFoundException::new);
         user.setEnabled(true);
         otp.setUsed(true);
         userRepository.save(user);
