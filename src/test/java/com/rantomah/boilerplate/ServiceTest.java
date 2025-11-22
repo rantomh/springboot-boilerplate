@@ -16,7 +16,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = true)
 @Testcontainers
-public class ServiceTest {
+class ServiceTest {
 
     @Autowired private MockMvc mockMvc;
 
