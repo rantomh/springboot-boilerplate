@@ -18,8 +18,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Testcontainers
 public class ServiceTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+    @Autowired private MockMvc mockMvc;
 
     @Value("${application.security.oidc.default-user}")
     private String defaultUser;
@@ -28,8 +27,8 @@ public class ServiceTest {
     private String defaultPassword;
 
     @Container
-    static PostgreSQLContainer<?> psqlContainer
-            = new PostgreSQLContainer<>("postgres:16-alpine")
+    static final PostgreSQLContainer<?> psqlContainer =
+            new PostgreSQLContainer<>("postgres:16-alpine")
                     .withDatabaseName("test_db")
                     .withUsername("dbuser")
                     .withPassword("dbpassword");
@@ -44,15 +43,17 @@ public class ServiceTest {
     @Test
     void shouldReturnUser() throws Exception {
         mockMvc.perform(
-                post("/api/auth/login")
-                        .contentType("application/json")
-                        .content(String.format(
-                                """
+                        post("/api/auth/login")
+                                .contentType("application/json")
+                                .content(
+                                        String.format(
+                                                """
                                 {
                                     "username": "%s",
                                     "password": "%s"
                                 }
-                                """, defaultUser, defaultPassword)))
+                                """,
+                                                defaultUser, defaultPassword)))
                 .andExpect(status().isOk());
     }
 }
