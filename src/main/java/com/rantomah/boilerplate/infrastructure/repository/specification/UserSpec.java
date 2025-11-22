@@ -5,6 +5,8 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class UserSpec {
 
+    private UserSpec() {}
+
     public static Specification<User> hasUsername(String username) {
         if (username == null || username.isBlank()) {
             return null;

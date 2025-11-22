@@ -14,8 +14,7 @@ public class UserMapper implements Mapper<User, UserDTO> {
 
     @Override
     public UserDTO toDto(User entity) {
-        UserDTO dto = userMapperStruct.toDto(entity);
-        return dto;
+        return userMapperStruct.toDto(entity);
     }
 
     @Override
