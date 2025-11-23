@@ -1,7 +1,7 @@
 package com.rantomah.boilerplate.infrastructure.repository;
 
 import com.rantomah.boilerplate.application.domain.constant.OtpUsage;
-import com.rantomah.boilerplate.application.domain.entities.OTP;
+import com.rantomah.boilerplate.application.domain.entity.OTP;
 import com.rantomah.boilerplate.core.GenericRepository;
 import java.util.Optional;
 
