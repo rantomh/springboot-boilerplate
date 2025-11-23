@@ -22,7 +22,7 @@ public class StaticResourceConfig implements WebMvcConfigurer {
         Path uploadPath = Paths.get(baseUploadDir).toAbsolutePath().normalize();
         String resourceLocation = uploadPath.toUri().toString(); // file:///...
         registry.addResourceHandler(resourceHandler)
-                .addResourceLocations(resourceLocation)
+                .addResourceLocations(ensureEndsWithSlash(resourceLocation))
                 .setCachePeriod(3600);
     }
 

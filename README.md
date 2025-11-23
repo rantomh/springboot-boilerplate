@@ -63,16 +63,20 @@ more.
 
 ## 🔧 Technologies & Features
 
--   Spring Boot 3\
--   Spring Security + OAuth2\
--   Redis Cache\
--   Kafka Events\
--   JPA + Spring Data\
--   Liquibase\
--   DTO + MapStruct\
--   Global Exception Handling\
--   i18n (EN/FR)\
--   Custom Validation\
+-   Java 21
+-   Spring Boot 3
+-   Postgresql 16
+-   Redis Cache
+-   Kafka Events
+-   Liquibase
+-   Docker
+-   Testcontainers
+-   Spring Security + OAuth2
+-   JPA + Spring Data
+-   DTO + MapStruct
+-   Global Exception Handling
+-   i18n (EN/FR)
+-   Custom Validation
 -   Full Hexagonal Architecture
 
 ------------------------------------------------------------------------
@@ -95,13 +99,13 @@ cd springboot-boilerplate
 Linux/macOS:
 
 ``` bash
-./mvnw spring-boot:run
+./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
 Windows:
 
 ``` bash
-mvnw.cmd spring-boot:run
+mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
 ------------------------------------------------------------------------
@@ -117,23 +121,17 @@ docker build -t springboot-boilerplate .
 ### Run
 
 ``` bash
-docker run -p 8080:8080 springboot-boilerplate
+docker run -e SPRING_PROFILES_ACTIVE=dev -p 8080:8080 springboot-boilerplate
 ```
 
 ------------------------------------------------------------------------
 
 # ⚙️ Configuration
 
-Active profiles:
+Available profiles:
 
 -   `dev`
 -   `prod`
-
-Switch profile:
-
-``` bash
---spring.profiles.active=dev
-```
 
 ------------------------------------------------------------------------
 
@@ -193,7 +191,7 @@ This boilerplate is designed to:
 -   Start projects fast
 -   Guarantee clean, maintainable architecture
 -   Serve as a professional base for enterprise apps
--   Showcase **mastery of Hexagonal Architecture** in a portfolio
+-   Showcase **Hexagonal Architecture**
 
 ------------------------------------------------------------------------
 
@@ -206,5 +204,5 @@ commercial use.
 
 # 🙌 Author
 
-**RantoMah**\
+**Rantomah** [Linkedin](https://www.linkedin.com/in/rantomah)\
 Senior Fullstack Developer & Software Architect
