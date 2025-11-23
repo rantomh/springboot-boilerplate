@@ -47,9 +47,6 @@ spring:
   devtools.restart:
     pollInterval: 1s
     additional-paths: file:src/main/resources/templates/
-    
-  profiles:
-    active: dev
 
   jackson:
     default-property-inclusion: non_null
