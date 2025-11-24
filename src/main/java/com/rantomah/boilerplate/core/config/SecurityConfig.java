@@ -1,6 +1,6 @@
 package com.rantomah.boilerplate.core.config;
 
-import com.rantomah.boilerplate.infrastructure.service.CustomUserDetailsServiceImpl;
+import com.rantomah.boilerplate.adapter.service.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    private final CustomUserDetailsServiceImpl userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
