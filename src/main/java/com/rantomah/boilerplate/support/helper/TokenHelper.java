@@ -1,8 +1,8 @@
-package com.rantomah.boilerplate.adapter.helper;
+package com.rantomah.boilerplate.support.helper;
 
+import com.rantomah.boilerplate.adapter.entity.RefreshToken;
+import com.rantomah.boilerplate.adapter.entity.User;
 import com.rantomah.boilerplate.application.domain.dto.auth.LoginResponseDTO;
-import com.rantomah.boilerplate.application.domain.entity.RefreshToken;
-import com.rantomah.boilerplate.application.domain.entity.User;
 import com.rantomah.boilerplate.core.config.oauth2.RealmScope;
 import com.rantomah.boilerplate.core.config.oauth2.TokenType;
 import com.rantomah.boilerplate.infrastructure.repository.RefreshTokenRepository;

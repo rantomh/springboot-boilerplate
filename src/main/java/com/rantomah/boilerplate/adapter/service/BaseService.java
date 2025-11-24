@@ -1,10 +1,10 @@
 package com.rantomah.boilerplate.adapter.service;
 
-import com.rantomah.boilerplate.adapter.helper.OtpHelper;
-import com.rantomah.boilerplate.application.domain.entity.User;
+import com.rantomah.boilerplate.adapter.entity.User;
 import com.rantomah.boilerplate.core.exception.AuthenticationException;
 import com.rantomah.boilerplate.core.exception.UserDisabledException;
 import com.rantomah.boilerplate.core.exception.UserLockedException;
+import com.rantomah.boilerplate.support.helper.OtpHelper;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;

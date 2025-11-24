@@ -1,4 +1,4 @@
-package com.rantomah.boilerplate.application.domain.entity;
+package com.rantomah.boilerplate.adapter.entity;
 
 import com.rantomah.boilerplate.application.domain.constant.UserRole;
 import jakarta.persistence.Column;

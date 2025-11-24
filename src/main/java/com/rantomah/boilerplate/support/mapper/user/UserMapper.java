@@ -1,7 +1,7 @@
-package com.rantomah.boilerplate.adapter.mapper.user;
+package com.rantomah.boilerplate.support.mapper.user;
 
+import com.rantomah.boilerplate.adapter.entity.User;
 import com.rantomah.boilerplate.application.domain.dto.user.UserDTO;
-import com.rantomah.boilerplate.application.domain.entity.User;
 import com.rantomah.boilerplate.core.mapper.BaseMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.rantomah.boilerplate.application.domain.entity;
+package com.rantomah.boilerplate.adapter.entity;
 
 import jakarta.persistence.*;
 import java.time.Instant;

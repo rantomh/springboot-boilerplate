@@ -1,6 +1,6 @@
 package com.rantomah.boilerplate.adapter.service;
 
-import com.rantomah.boilerplate.application.domain.entity.User;
+import com.rantomah.boilerplate.adapter.entity.User;
 import com.rantomah.boilerplate.infrastructure.repository.user.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

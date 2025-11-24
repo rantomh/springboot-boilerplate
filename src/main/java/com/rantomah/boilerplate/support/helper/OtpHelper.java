@@ -1,10 +1,11 @@
-package com.rantomah.boilerplate.adapter.helper;
+package com.rantomah.boilerplate.support.helper;
 
+import com.rantomah.boilerplate.adapter.dao.OtpDAO;
+import com.rantomah.boilerplate.adapter.entity.OTPEntity;
 import com.rantomah.boilerplate.application.domain.constant.OtpUsage;
-import com.rantomah.boilerplate.application.domain.entity.OTP;
+import com.rantomah.boilerplate.application.domain.model.OTP;
 import com.rantomah.boilerplate.core.exception.InvalidOtpException;
 import com.rantomah.boilerplate.core.util.StringUtils;
-import com.rantomah.boilerplate.infrastructure.repository.OtpRepository;
 import jakarta.transaction.Transactional;
 import java.time.Instant;
 import lombok.RequiredArgsConstructor;
@@ -15,21 +16,21 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class OtpHelper {
 
-    private final OtpRepository otpRepository;
+    private final OtpDAO otpDAO;
 
     @Value("${application.security.otp.exiration:900}") // default 15 min
     private Long otpExpiration;
 
     @Transactional
     public OTP createByKeyAndUsage(String cle, OtpUsage usage) {
-        OTP otp =
-                OTP.builder()
+        OTPEntity otp =
+                OTPEntity.builder()
                         .cle(cle)
                         .code(StringUtils.generateActivationCode(6))
                         .usage(usage)
                         .expiresAt(Instant.now().plusSeconds(otpExpiration))
                         .build();
-        return otpRepository.save(otp);
+        return otpDAO.save(otp);
     }
 
     @Transactional
@@ -42,16 +43,15 @@ public class OtpHelper {
         OTP otp;
         if (usage != null) {
             otp =
-                    otpRepository
-                            .findByCodeAndCleAndUsage(code, cle, usage)
+                    otpDAO.findByCodeAndCleAndUsage(code, cle, usage)
                             .orElseThrow(InvalidOtpException::new);
         } else {
-            otp = otpRepository.findByCodeAndCle(code, cle).orElseThrow(InvalidOtpException::new);
+            otp = otpDAO.findByCodeAndCle(code, cle).orElseThrow(InvalidOtpException::new);
         }
         if (otp.isUsed() || otp.isExpired()) {
             throw new InvalidOtpException();
         }
         otp.setUsed(true);
-        otpRepository.save(otp);
+        otpDAO.save(otp);
     }
 }

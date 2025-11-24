@@ -1,6 +1,7 @@
-package com.rantomah.boilerplate.application.domain.entity;
+package com.rantomah.boilerplate.adapter.entity;
 
 import com.rantomah.boilerplate.application.domain.constant.OtpUsage;
+import com.rantomah.boilerplate.application.domain.model.OTP;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
         indexes = {@Index(name = "idx_otp_clecode", columnList = "cle, code", unique = true)})
 @NoArgsConstructor
 @AllArgsConstructor
-public class OTP {
+public class OTPEntity implements OTP {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +43,7 @@ public class OTP {
     @Column(nullable = false)
     private Instant expiresAt;
 
+    @Override
     public boolean isExpired() {
         return Instant.now().isAfter(expiresAt);
     }

@@ -1,7 +1,7 @@
-package com.rantomah.boilerplate.adapter.config;
+package com.rantomah.boilerplate.support.bootstrap;
 
+import com.rantomah.boilerplate.adapter.entity.User;
 import com.rantomah.boilerplate.application.domain.constant.UserRole;
-import com.rantomah.boilerplate.application.domain.entity.User;
 import com.rantomah.boilerplate.core.config.oauth2.RealmScope;
 import com.rantomah.boilerplate.infrastructure.repository.user.UserRepository;
 import java.time.Duration;

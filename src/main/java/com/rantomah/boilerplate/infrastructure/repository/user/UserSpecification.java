@@ -1,6 +1,6 @@
 package com.rantomah.boilerplate.infrastructure.repository.user;
 
-import com.rantomah.boilerplate.application.domain.entity.User;
+import com.rantomah.boilerplate.adapter.entity.User;
 import org.springframework.data.jpa.domain.Specification;
 
 public class UserSpecification {
