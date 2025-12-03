@@ -16,6 +16,8 @@ logging:
         mail: INFO
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   data:
     redis:
       repositories:

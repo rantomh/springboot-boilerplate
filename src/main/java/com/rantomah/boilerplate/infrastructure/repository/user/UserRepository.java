@@ -7,7 +7,9 @@ import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+@RepositoryRestResource(path = "users-mngt")
 public interface UserRepository extends GenericRepository<User, UUID> {
 
     Optional<User> findByUsername(String username);
